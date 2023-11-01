@@ -1,7 +1,7 @@
 from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
 # from aiogram.utils.keyboard import ReplyKeyboardBuilder
 
-reg_kb=ReplyKeyboardMarkup(keyboard=[[KeyboardButton(text='/registration')]],resize_keyboard=True,one_time_keyboard=True)
+reg_kb=ReplyKeyboardMarkup(keyboard=[[KeyboardButton(text='/reg')]],resize_keyboard=True,one_time_keyboard=True)
 
 # def get_reg_kb():
 #     keyboard_builder=ReplyKeyboardBuilder()
