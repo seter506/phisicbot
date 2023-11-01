@@ -12,4 +12,4 @@ async def reg_start(message:Message,state:FSMContext):
 
 
 def register_reg_client(dp: Dispatcher):
-    dp.message.register(reg_start, 'Регистрация')
+    dp.message.register(reg_start, Command(commands=['registration']))
