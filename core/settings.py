@@ -22,3 +22,5 @@ def get_settings(path:str):
     )
 
 settings = get_settings('input')
+
+klass=['7а','7б','7в','7г','7д','7е','8а','8б','8в','8г','8д','8м','9б','9в','9г','9д']
