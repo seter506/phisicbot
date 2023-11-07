@@ -1,6 +1,7 @@
 from aiogram import Bot, Dispatcher
 import asyncio
 import logging
+import sqlite3
 from core.handlers.basic import register_basic_handlers
 from core.handlers.register_client import register_reg_client
 from core.settings import settings
@@ -14,8 +15,11 @@ async def start():
     dp = Dispatcher()
     register_basic_handlers(dp)
     register_reg_client(dp)
+    with sqlite3.connect('utils/database.db') as db:
+        pass
 
     try:
+
         await dp.start_polling(bot)
     finally:
         await bot.session.close()
