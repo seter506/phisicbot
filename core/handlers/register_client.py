@@ -5,6 +5,7 @@ from utils.states import StepsReg
 from aiogram.filters import Command
 from core.keyboards.reg_kb import klass_kb, conf_kb
 from aiogram.types import ContentType
+from utils.db_class import DataBase
 
 
 async def reg_start(message:Message,state:FSMContext):
@@ -37,6 +38,10 @@ async def reg_stop(message: Message, state: FSMContext):
     if message.text=='ОК':
         await message.answer(f'Регистрация завершена успешно.')
         await message.answer('Сохраняю ваши данные...')
+        client_data = await state.get_data()
+        db = DataBase('utils/database.db')
+        db.add_client(message.from_user.id,client_data.get('name'),client_data.get('last_name'),client_data.get('klass'))
+        await message.answer('Ваши данные сохранены.')
     else:
         await message.answer(f'Регистрация отменена.')
     await state.clear()
