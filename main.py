@@ -16,7 +16,8 @@ async def start():
     dp = Dispatcher()
     register_basic_handlers(dp)
     register_reg_client(dp)
-    # db.create_table()
+    db=DataBase('utils/database.db')
+    db.create_table()
 
     try:
 
