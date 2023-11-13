@@ -24,7 +24,7 @@ async def get_start(message: Message):
     else:
         await message.answer(emoji.emojize('Привет! Этот бот служит для получения и выполнения дополнительных заданий '
                                            f'по физике. Прежде чем использовать бота необходимо зарегистрироваться.'
-                                           f' Нажмите на кнопку "/reg" :backhand_index_pointing_down:'),
+                                           f' :backhand_index_pointing_down:'),
                              reply_markup=reg_kb)
 
 async def get_image(message: Message, bot: Bot):
