@@ -13,7 +13,8 @@ class DataBase:
             id_tel VARCHAR(10),
             name VARCHAR(30),
             last_name VARCHAR(30),
-            klass VARCHAR(3)
+            klass VARCHAR(3),
+            confirm BOOLEAN DEFAULT False
             )
             """
             self.cursor.executescript(query)
@@ -31,3 +32,9 @@ class DataBase:
         with self.connect:
            val = [client_id_tel, client_name, client_last_name, client_klass]
            self.cursor.execute("INSERT INTO clients(id_tel, name, last_name, klass) VALUES(?,?,?,?)", val)
+
+    # проверка подтвержденного клиента
+    def client_confirm(self, client_id_tel):
+        with self.connect:
+            result = self.cursor.execute("SELECT confirm FROM clients WHERE id_tel=?", (client_id_tel,)).fetchone()
+            return result[0]
