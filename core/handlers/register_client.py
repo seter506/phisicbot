@@ -48,7 +48,7 @@ async def reg_stop(message: Message, state: FSMContext):
 
 
 def register_reg_client(dp: Dispatcher):
-    dp.message.register(reg_start, Command(commands=['reg']))
+    dp.message.register(reg_start, F.text=='регистрация')
     dp.message.register(get_name, StepsReg.GET_NAME)
     dp.message.register(get_klass, StepsReg.GET_LAST_NAME)
     dp.message.register(reg_confirm,StepsReg.GET_KLASS)
