@@ -2,7 +2,7 @@ from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
 from aiogram.utils.keyboard import ReplyKeyboardBuilder
 from core.settings import klass
 
-reg_kb=ReplyKeyboardMarkup(keyboard=[[KeyboardButton(text='/reg')]],resize_keyboard=True,one_time_keyboard=True)
+reg_kb=ReplyKeyboardMarkup(keyboard=[[KeyboardButton(text='регистрация')]],resize_keyboard=True,one_time_keyboard=True)
 
 conf_kb=ReplyKeyboardMarkup(keyboard=[[KeyboardButton(text='ОК')],[KeyboardButton(text='Отмена')]],
                             resize_keyboard=True,one_time_keyboard=True)
