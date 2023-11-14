@@ -42,6 +42,7 @@ async def reg_stop(message: Message, state: FSMContext):
         db = DataBase('utils/database.db')
         db.add_client(message.from_user.id,client_data.get('name'),client_data.get('last_name'),client_data.get('klass'))
         await message.answer('Ваши данные сохранены.')
+        await message.bot.send_message('1442263953',f'Подана новая заявка на регистрацию.')
     else:
         await message.answer(f'Регистрация отменена.')
     await state.clear()
