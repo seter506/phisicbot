@@ -37,4 +37,7 @@ class DataBase:
     def client_confirm(self, client_id_tel):
         with self.connect:
             result = self.cursor.execute("SELECT confirm FROM clients WHERE id_tel=?", (client_id_tel,)).fetchone()
-            return result[0]
+            if result==None:
+                return -1
+            else:
+                return result[0]
