@@ -1,4 +1,4 @@
-from aiogram import Dispatcher,F
+from aiogram import Dispatcher,F, Bot
 from aiogram.types import Message
 from aiogram.fsm.context import FSMContext
 from utils.states import StepsReg
@@ -6,6 +6,7 @@ from aiogram.filters import Command
 from core.keyboards.reg_kb import klass_kb, conf_kb
 from aiogram.types import ContentType
 from utils.db_class import DataBase
+from core.settings import settings
 
 
 async def reg_start(message:Message,state:FSMContext):
@@ -34,7 +35,7 @@ async def reg_confirm(message: Message, state: FSMContext):
                          f'Класс: {klass}',reply_markup=conf_kb)
     await state.set_state(StepsReg.CONFIRM)
 
-async def reg_stop(message: Message, state: FSMContext):
+async def reg_stop(message: Message, state: FSMContext, bot:Bot):
     if message.text=='ОК':
         await message.answer(f'Регистрация завершена успешно.')
         await message.answer('Сохраняю ваши данные...')
@@ -42,7 +43,7 @@ async def reg_stop(message: Message, state: FSMContext):
         db = DataBase('utils/database.db')
         db.add_client(message.from_user.id,client_data.get('name'),client_data.get('last_name'),client_data.get('klass'))
         await message.answer('Ваши данные сохранены.')
-        await message.bot.send_message('1442263953',f'Подана новая заявка на регистрацию.')
+        await bot.send_message(settings.bots.admin_id, text='Подана новая заявка на регистрацию.')
     else:
         await message.answer(f'Регистрация отменена.')
     await state.clear()
