@@ -16,10 +16,9 @@ async def stop_bot(bot:Bot):
 
 async def get_start(message: Message):
     db=DataBase('utils/database.db')
-    if db.client_exists(message.from_user.id):
-        if db.client_confirm(message.from_user.id):
+    if db.client_confirm(message.from_user.id) == 1:
             await message.answer(f'Вы зарегистрированы и подтверждены.')
-        else:
+    elif db.client_confirm(message.from_user.id) == 0:
             await message.answer(f'Вы зарегистрированы, подождите подтверждение вашей заявки.')
     else:
         await message.answer(emoji.emojize('Привет! Этот бот служит для получения и выполнения дополнительных заданий '
