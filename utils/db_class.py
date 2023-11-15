@@ -19,14 +19,6 @@ class DataBase:
             """
             self.cursor.executescript(query)
 
-    def client_exists(self, client_id_tel):
-        with self.connect:
-            result = self.cursor.execute("SELECT id_tel FROM clients WHERE id_tel=?", (client_id_tel,)).fetchone()
-            if result:
-                return True
-            else:
-                return False
-
     # добавление клиента в базу
     def add_client(self, client_id_tel, client_name, client_last_name, client_klass):
         with self.connect:
@@ -41,3 +33,8 @@ class DataBase:
                 return -1
             else:
                 return result[0]
+
+    def get_unconf_clients(self):
+        with self.connect:
+            result=self.cursor.execute("SELECT name, last_name, klass FROM clients WHERE confirm=0").fetchall()
+            return result
