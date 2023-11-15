@@ -36,5 +36,5 @@ class DataBase:
 
     def get_unconf_clients(self):
         with self.connect:
-            result=self.cursor.execute("SELECT name, last_name, klass FROM clients WHERE confirm=0").fetchall()
+            result=self.cursor.execute("SELECT id, name, last_name, klass FROM clients WHERE confirm=0").fetchall()
             return result
