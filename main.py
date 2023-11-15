@@ -4,6 +4,7 @@ import logging
 import sqlite3
 from core.handlers.basic import register_basic_handlers
 from core.handlers.register_client import register_reg_client
+from core.handlers.admin import register_admin
 from core.settings import settings
 from utils.db_class import DataBase
 
@@ -16,6 +17,7 @@ async def start():
     dp = Dispatcher()
     register_basic_handlers(dp)
     register_reg_client(dp)
+    register_admin(dp)
     db=DataBase('utils/database.db')
     db.create_table()
 
