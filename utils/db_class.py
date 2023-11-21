@@ -34,7 +34,12 @@ class DataBase:
             else:
                 return result[0]
 
+    #вывод не подтвержденных клиентов
     def get_unconf_clients(self):
         with self.connect:
-            result=self.cursor.execute("SELECT id, name, last_name, klass FROM clients WHERE confirm=0").fetchall()
+            result=self.cursor.execute("SELECT id, name, last_name, klass,id_tel FROM clients WHERE confirm=0").fetchall()
             return result
+
+    def conf_ok_client(self, id_tel):
+        with self.connect:
+            self.cursor.execute("UPDATE clients SET confirm=True WHERE id_tel=?",(id_tel,))
